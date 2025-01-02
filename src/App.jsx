@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchImagesWithPhoto } from "./components/images-api";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
-import ImageCard from "./components/ImageCard/ImageCard";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import ImageModal from "./components/ImageModal/ImageModal";
 import Loader from "./components/Loader/Loader";
