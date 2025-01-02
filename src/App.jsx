@@ -13,13 +13,13 @@ export default function App() {
   const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
-  const [searchQuery, setSearchQuery] = useState(" ");
+  const [searchQuery, setSearchQuery] = useState("");
   const [noResults, setNoResults] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const hendleSearch = async (imageName) => {
+  const handleSearch = async (imageName) => {
     setSearchQuery(imageName);
     setPage(1);
     setImages([]);
@@ -30,7 +30,7 @@ export default function App() {
 
     const fetchImages = async () => {
       try {
-        setDefaultResultOrder(false);
+        setError(false);
         setLoading(true);
         setNoResults(false);
         const data = await fetchImagesWithPhoto(searchQuery, page);
@@ -47,6 +47,7 @@ export default function App() {
         setLoading(false);
       }
     };
+
     fetchImages();
   }, [searchQuery, page]);
 
@@ -71,7 +72,7 @@ export default function App() {
     <div>
       <SearchBar onSearch={handleSearch} />
       {noResults && (
-        <ErrorMessage children={"No photos Found matching your request"} />
+        <ErrorMessage children={"No photos found matching your request"} />
       )}
       {images.length > 0 && (
         <ImageGallery images={images} onClick={openModal} />
